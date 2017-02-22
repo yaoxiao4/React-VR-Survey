@@ -13,6 +13,7 @@ function SurveyQuestion(props) {
 		question,
 		position,
 	} = props;
+	console.log(question)
 
 	let style = {
 		position: 'absolute',
@@ -66,11 +67,17 @@ function SurveyQuestion(props) {
   	}
 
 	const answersEl = question.choices.map(choice => {
+		let choiceStyle = {
+			backgroundColor: 'white',
+			margin: 0.02,
+		};
+
+		if (question.selected == choice.value) {
+			choiceStyle.backgroundColor = '#e5b13a';
+		}
+
 		return (
-			<VrButton style={{
-					backgroundColor: 'white',
-					margin: 0.02,
-				}} key={choice.value}>
+			<VrButton style={choiceStyle} key={choice.value} onClick={() => onQuestionClick(choice.value, question)}>
 				<Text style={{
 					fontSize: 0.15,
 					marginLeft: 0.1,

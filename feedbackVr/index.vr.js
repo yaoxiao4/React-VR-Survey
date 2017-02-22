@@ -17,8 +17,21 @@ import ControlPanel from './control-panel';
 class FeedbackVR extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {shouldShowText: false};
     this.onQuestionClick = this.onQuestionClick.bind(this);
+    let questions = stubs.map(question => {
+    	return {
+    		title: question.title,
+    		choices: question.choices,
+    		selected: 0,
+    	}
+    });
+
+    questions[0].selected = 1;
+
+    this.state = {
+    	shouldShowText: false,
+    	questions
+    };
   }
 
   on_click() {
@@ -29,8 +42,16 @@ class FeedbackVR extends React.Component {
     }, 3000)
   }
 
-  onQuestionClick(value) {
-
+  onQuestionClick(value, question) {
+  	for (let i = 0; i < this.state.questions.length; i++) {
+  		if (this.state.questions[i].title == question.title) {
+  			let newQuestions = [...this.state.questions];
+  			newQuestions[i].selected = value;
+  			this.setState({
+  				questions: newQuestions,
+  			});
+  		}
+  	}
   }
 
   render() {
@@ -95,9 +116,9 @@ class FeedbackVR extends React.Component {
           Medallia VR Team
         </Text>
 
-        <SurveyQuestion position='center' question={ stubs[0] } />
-        <SurveyQuestion position='left' question={ stubs[1] } />
-        <SurveyQuestion position='right' question={ stubs[2] } />
+        <SurveyQuestion onQuestionClick={ this.onQuestionClick } position='center' question={ this.state.questions[0] } />
+        <SurveyQuestion onQuestionClick={ this.onQuestionClick } position='left' question={ this.state.questions[1] } />
+        <SurveyQuestion onQuestionClick={ this.onQuestionClick } position='right' question={ this.state.questions[2] } />
 
         <ControlPanel/>
       </View>
