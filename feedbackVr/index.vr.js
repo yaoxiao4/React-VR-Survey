@@ -74,17 +74,18 @@ class FeedbackVR extends React.Component {
       <View>
         <Pano source={asset('earth.jpg')}/>
         <VrButton
-          style={{width: 1}}
+          style={{width: 1,
+              position:'absolute',
+              layoutOrigin: [0.5, 0.5],
+              transform: [{translate: [0, 1.5, -3]}]
+          }}
           onClick={()=>this.on_click()}>
           <Text
             style={{
-              position: 'absolute',
               backgroundColor: 'blue',
               textAlign:'center',
               textAlignVertical:'center',
               fontSize: 0.2,
-              layoutOrigin: [0.5, 0.5],
-              transform: [{translate: [0, 3, -3]}],
             }}>
             push me
           </Text>
@@ -94,23 +95,18 @@ class FeedbackVR extends React.Component {
         <Image
           source={asset('confetti.gif')}
           style={{
+            position: 'absolute',
             height: 3,
+            width: 4,
             layoutOrigin: [0.5, 0.5],
-            transform: [{
-              translate: [0, 0, -5],
-            },
-              {
-                rotateY: 0
-              },
-              {
-                rotateX: 0
-              }],
+            transform: [{translate: [0, 0, -2]}],
           }}>
         </Image>
         }
 
         <Text
           style={{
+            position: 'absolute',
             padding: 0.02,
             textAlign:'center',
             textAlignVertical:'center',
