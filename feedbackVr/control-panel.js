@@ -16,26 +16,35 @@ const buttonStyling = {
 const leftButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [-0.5, 0.5, -1.5],
+        translate: [0.9, 0.75, -1.5],
+
     }]
 };
 
 const rightButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [0.5, 0.5, -1.5],
+        translate: [0.9, 1.25, -1.5],
     }]
 };
 
 const arrowStyling = {
     width: 0.5,
     height: 0.4,
-    overlayColor: 'red'
+    overlayColor: 'red',
+    transform: [
+    {
+        rotateZ: 90,
+    }]
 };
 
 const leftArrowStyling = {
     ...arrowStyling,
-    height: 0.35
+    height: 0.35,
+    transform: [
+    {  
+        rotateZ: -90,
+    }]
 }
 
 export default class ControlPanel extends React.Component {
@@ -50,7 +59,7 @@ export default class ControlPanel extends React.Component {
                 style={leftButtonStyling}
                 onClick={() => this.props.onArrowClick(true)}>
                 <Image
-                    source={asset('prev2.jpg')}
+                    source={asset('next2.jpg')}
                     style={leftArrowStyling}>
                 </Image>
               </VrButton>
