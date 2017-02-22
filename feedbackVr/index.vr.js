@@ -10,6 +10,8 @@ import {
   VrButton,
 } from 'react-vr';
 
+import ControlPanel from './control-panel';
+
 class FeedbackVR extends React.Component {
   _onViewClicked() {
     alert('aya');
@@ -39,27 +41,7 @@ class FeedbackVR extends React.Component {
           Medallia VR Team
         </Text>
 
-        <VrButton
-          style={{width: 0.7}}
-          onClick={()=>this._onViewClicked()}>
-          <Image
-            source={asset('cat.jpg')}
-            style={{
-              width: 2,
-              height: 2,
-              layoutOrigin: [0.5, 0.5],
-              transform: [{
-                translate: [0, 0, -5],
-              },
-              {
-                rotateY: 0
-              },
-              {
-                rotateX: 0
-              }],
-            }}
-          />
-        </VrButton>
+        <ControlPanel/>
       </View>
     );
   }
