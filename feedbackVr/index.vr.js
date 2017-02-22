@@ -81,15 +81,14 @@ class FeedbackVR extends React.Component {
               transform: [{translate: [0, 1.5, -3]}]
           }}
           onClick={()=>this.on_click()}>
-          <Text
-            style={{
-              backgroundColor: 'blue',
-              textAlign:'center',
-              textAlignVertical:'center',
-              fontSize: 0.2,
-            }}>
-            push me
-          </Text>
+          <Image
+              source={asset('submit.jpg')}
+              style={{
+                  position: 'absolute',
+                  height: 0.25,
+                  width: 0.9,
+              }}>
+          </Image>
         </VrButton>
 
         {shouldShowText &&
