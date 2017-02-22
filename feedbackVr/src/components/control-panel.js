@@ -16,7 +16,7 @@ const buttonStyling = {
 const leftButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [-0.5, 0.6, -1.5],
+        translate: [-0.5, -0.3, -1.5],
 
     }]
 };
@@ -24,19 +24,18 @@ const leftButtonStyling = {
 const rightButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [0.5, 0.6, -1.5],
+        translate: [0.5, -0.3, -1.5],
     }]
 };
 
 const arrowStyling = {
     width: 0.5,
-    height: 0.4,
+    height: 0.35,
     overlayColor: 'red',
 };
 
 const leftArrowStyling = {
     ...arrowStyling,
-    height: 0.35,
     transform: [
     {  
         rotateZ: -180,
@@ -50,10 +49,7 @@ export default class ControlPanel extends React.Component {
 
     render() {
         return (
-            <View style={{position:'absolute',
-                transform: [{
-                    translate: [0, -1, -2],
-                }],
+            <View style={{
                 flexDirection: 'row'}}>
               <VrButton
                 style={leftButtonStyling}

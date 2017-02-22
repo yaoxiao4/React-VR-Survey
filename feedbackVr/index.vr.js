@@ -24,6 +24,7 @@ class FeedbackVR extends React.Component {
     		title: question.title,
     		choices: question.choices,
     		selected: 0,
+    		progress: 0,
     	}
     });
 
@@ -57,6 +58,10 @@ class FeedbackVR extends React.Component {
   			});
   		}
   	}
+
+  	// Update progress
+  	const length = this.state.questions.length;
+  	
   }
 
   selectNextQuestion(goLeft) {
@@ -103,6 +108,17 @@ class FeedbackVR extends React.Component {
           }}>
         </Image>
         }
+
+        <Image
+          source={asset('borge.jpg')}
+          style={{
+            position: 'absolute',
+            height: 3,
+            width: 3,
+            layoutOrigin: [0.5, 0.5],
+            transform: [{translate: [0, 0, 5]}],
+          }}>
+        </Image>
 
         <Text
           style={{
