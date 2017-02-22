@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     asset,
-    Text,
     View,
     Image,
     VrButton,
@@ -10,7 +9,7 @@ import {
 const buttonStyling = {
     position: 'absolute',
     width: 0.5,
-    height: 0.5,
+    height: 0.25,
     layoutOrigin: [0.5, 0.5],
 };
 
@@ -24,13 +23,13 @@ const leftButtonStyling = {
 const rightButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [0, 0, -3],
+        translate: [0.5, 0, -3],
     }]
 };
 
 const arrowStyling = {
     width: 0.5,
-    height: 0.5,
+    height: 0.25,
     overlayColor: 'red'
 };
 
@@ -42,17 +41,25 @@ const leftArrowStyling = {
 }
 
 export default class ControlPanel extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
     render() {
         return (
             <View style={{flexDirection: 'row'}}>
-              <VrButton style={leftButtonStyling}>
+              <VrButton
+                style={leftButtonStyling}
+                onClick={() => this.props.onArrowClick(true)}>
                 <Image
                     source={asset('arrow_white')}
                     style={leftArrowStyling}>
                 </Image>
               </VrButton>
 
-              <VrButton style={rightButtonStyling}>
+              <VrButton
+                style={rightButtonStyling}
+                onClick={() => this.props.onArrowClick(false)}>
               <Image
                   source={asset('arrow_white')}
                   style={arrowStyling}>

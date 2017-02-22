@@ -17,8 +17,12 @@ import ControlPanel from './control-panel';
 class FeedbackVR extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {shouldShowText: false};
+    this.state = {
+        shouldShowText: false,
+        index: 0 // index of current question in position center
+    };
     this.onQuestionClick = this.onQuestionClick.bind(this);
+    this.selectNextQuestion = this.selectNextQuestion.bind(this);
   }
 
   on_click() {
@@ -33,8 +37,17 @@ class FeedbackVR extends React.Component {
 
   }
 
+  selectNextQuestion(goLeft) {
+      if ((goLeft && this.state.index) === 0 || (!goLeft && this.state.index === stubs.length - 1)) {
+          return;
+      }
+      const newIndex = goLeft ? this.state.index - 1 : this.state.index + 1;
+      this.setState({index: newIndex});
+  }
+
   render() {
-    const {shouldShowText} = this.state;
+    const {shouldShowText} = this.state,
+        {index} = this.state;
 
     return (
       <View>
@@ -95,11 +108,11 @@ class FeedbackVR extends React.Component {
           Medallia VR Team
         </Text>
 
-        <SurveyQuestion position='center' question={ stubs[0] } />
-        <SurveyQuestion position='left' question={ stubs[1] } />
-        <SurveyQuestion position='right' question={ stubs[2] } />
+        <SurveyQuestion position='center' question={ stubs[index] } />
+        {(index > 0) && <SurveyQuestion position='left' question={ stubs[index - 1] } />}
+        {(index < stubs.length - 1) && <SurveyQuestion position='right' question={ stubs[index + 1] } />}
 
-        <ControlPanel/>
+        <ControlPanel onArrowClick={this.selectNextQuestion}/>
       </View>
     );
   }
