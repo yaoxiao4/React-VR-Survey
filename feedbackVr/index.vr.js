@@ -17,10 +17,23 @@ import ControlPanel from './control-panel';
 class FeedbackVR extends React.Component {
   constructor(props) {
     super(props);
+
+    const questions = stubs.map(question => {
+    	return {
+    		title: question.title,
+    		choices: question.choices,
+    		selected: 0,
+    	}
+    });
+
+    questions[0].selected = 1;
+
     this.state = {
-        shouldShowText: false,
-        index: 0 // index of current question in position center
+    	shouldShowText: false,
+        index: 0, // index of current question in position center
+    	questions
     };
+
     this.onQuestionClick = this.onQuestionClick.bind(this);
     this.selectNextQuestion = this.selectNextQuestion.bind(this);
   }
@@ -33,8 +46,16 @@ class FeedbackVR extends React.Component {
     }, 3000)
   }
 
-  onQuestionClick(value) {
-
+  onQuestionClick(value, question) {
+  	for (let i = 0; i < this.state.questions.length; i++) {
+  		if (this.state.questions[i].title == question.title) {
+  			let newQuestions = [...this.state.questions];
+  			newQuestions[i].selected = value;
+  			this.setState({
+  				questions: newQuestions,
+  			});
+  		}
+  	}
   }
 
   selectNextQuestion(goLeft) {
@@ -108,9 +129,21 @@ class FeedbackVR extends React.Component {
           Medallia VR Team
         </Text>
 
-        <SurveyQuestion position='center' question={ stubs[index] } />
-        {(index > 0) && <SurveyQuestion position='left' question={ stubs[index - 1] } />}
-        {(index < stubs.length - 1) && <SurveyQuestion position='right' question={ stubs[index + 1] } />}
+        <SurveyQuestion
+            position='center'
+            question={ this.state.questions[index] }
+            onQuestionClick={ this.onQuestionClick }/>
+        {(index > 0) &&
+            <SurveyQuestion
+                position='left'
+                question={ this.state.questions[index - 1] }
+                onQuestionClick={ this.onQuestionClick }/>}
+
+        {(index < this.state.questions.length - 1) &&
+            <SurveyQuestion
+                position='right'
+                question={ this.state.questions[index + 1] }
+                onQuestionClick={ this.onQuestionClick }/>}
 
         <ControlPanel onArrowClick={this.selectNextQuestion}/>
       </View>
