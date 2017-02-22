@@ -9,10 +9,11 @@ import {
 	Image,
 	VrButton,
 } from 'react-vr';
+
 import stubs from './src/stubs.js';
 import SurveyQuestion from './src/components/survey_question/survey-question';
-
-import ControlPanel from './control-panel';
+import ControlPanel from './src/components/control-panel';
+import ProgressBar from './src/components/progress-bar';
 
 class FeedbackVR extends React.Component {
   constructor(props) {
