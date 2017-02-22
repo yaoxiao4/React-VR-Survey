@@ -24,14 +24,14 @@ class FeedbackVR extends React.Component {
     		title: question.title,
     		choices: question.choices,
     		selected: 0,
-    		progress: 0,
     	}
     });
 
     this.state = {
     	shouldShowText: false,
         index: 0, // index of current question in position center
-    	questions
+    	questions,
+    	progress: 0,
     };
 
     this.onQuestionClick = this.onQuestionClick.bind(this);
@@ -70,8 +70,6 @@ class FeedbackVR extends React.Component {
   	this.setState({
   		progress: count/length
   	});
-
-  	console.log(count/length);
   }
 
   selectNextQuestion(goLeft) {
