@@ -15,6 +15,7 @@ function SurveyQuestion(props) {
 	} = props;
 
 	let style = {
+		position: 'absolute',
 	    width: 3,
 	    height: 2,
 	    padding: 0.02,
@@ -27,7 +28,7 @@ function SurveyQuestion(props) {
   		case 'center':
 	  		style.transform = [
 		  		{
-		  			translate: [0, 1, -5],
+		  			translate: [0, 1, -2],
 		  		},
 		  		{
 		  			rotateY: 0
@@ -37,26 +38,26 @@ function SurveyQuestion(props) {
 		  		}
 	  		];
 	  		break;
-		case 'center':
+		case 'left':
 	  		style.transform = [
 		  		{
-		  			translate: [0, 1, -5],
+		  			translate: [-5, 1, -1],
 		  		},
 		  		{
-		  			rotateY: 0
+		  			rotateY: 40
 		  		},
 		  		{
 		  			rotateX: 0
 		  		}
 	  		];
 	  		break;
-  		case 'center':
+  		case 'right':
 	  		style.transform = [
 		  		{
-		  			translate: [0, 1, -5],
+		  			translate: [5, 1, -1],
 		  		},
 		  		{
-		  			rotateY: 0
+		  			rotateY: -40
 		  		},
 		  		{
 		  			rotateX: 0
@@ -67,7 +68,7 @@ function SurveyQuestion(props) {
 
 	const answersEl = question.choices.map(question => {
 		return (
-			<Text style={{
+			<Text key={question.value} style={{
 				fontSize: 0.15,
 				marginLeft: 0.1,
 			}}>
@@ -80,7 +81,7 @@ function SurveyQuestion(props) {
 		<View>
 			<Image
 				source={asset('black.jpg')}
-			 	style={}>
+			 	style={style}>
 			  	<Text style={{
 			  		color: 'white',
 			  		textAlign: 'center',
