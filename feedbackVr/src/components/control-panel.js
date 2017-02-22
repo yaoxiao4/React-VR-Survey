@@ -16,7 +16,7 @@ const buttonStyling = {
 const leftButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [0.9, 0.75, -1.5],
+        translate: [-0.5, 0.6, -1.5],
 
     }]
 };
@@ -24,7 +24,7 @@ const leftButtonStyling = {
 const rightButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [0.9, 1.25, -1.5],
+        translate: [0.5, 0.6, -1.5],
     }]
 };
 
@@ -32,10 +32,6 @@ const arrowStyling = {
     width: 0.5,
     height: 0.4,
     overlayColor: 'red',
-    transform: [
-    {
-        rotateZ: 90,
-    }]
 };
 
 const leftArrowStyling = {
@@ -43,7 +39,7 @@ const leftArrowStyling = {
     height: 0.35,
     transform: [
     {  
-        rotateZ: -90,
+        rotateZ: -180,
     }]
 }
 

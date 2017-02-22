@@ -20,13 +20,14 @@ function SurveyQuestion(props) {
 	    height: 2,
 	    padding: 0.02,
 	    layoutOrigin: [0.5, 0.5],
+	    transform: [],
 	};
 
   	switch (position) {
   		case 'center':
 	  		style.transform = [
 		  		{
-		  			translate: [-0.8, 0, -5],
+		  			translate: [0, 0, -5],
 		  		},
 		  		{
 		  			rotateY: 0
@@ -39,26 +40,26 @@ function SurveyQuestion(props) {
 		case 'left':
 	  		style.transform = [
 		  		{
-		  			translate: [-0.8, 2.5, -2],
+		  			translate: [-5, 0, -2],
 		  		},
 		  		{
-		  			rotateY: 0
+		  			rotateY: 40
 		  		},
 		  		{
-		  			rotateX: 40
+		  			rotateX: 0
 		  		}
 	  		];
 	  		break;
   		case 'right':
 	  		style.transform = [
 		  		{
-		  			translate: [-0.8, -2.5, -2],
+		  			translate: [5, 0, -2],
 		  		},
 		  		{
-		  			rotateY: 0
+		  			rotateY: -40
 		  		},
 		  		{
-		  			rotateX: -40
+		  			rotateX: 0
 		  		}
 	  		];
 	  		break;
