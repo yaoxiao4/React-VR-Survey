@@ -18,6 +18,7 @@ class FeedbackVR extends React.Component {
   constructor(props) {
     super(props);
     this.state = {shouldShowText: false};
+    this.onQuestionClick = this.onQuestionClick.bind(this);
   }
 
   on_click() {
@@ -26,6 +27,10 @@ class FeedbackVR extends React.Component {
     setTimeout(()=> {
       this.setState({shouldShowText: false});
     }, 3000)
+  }
+
+  onQuestionClick(value) {
+
   }
 
   render() {

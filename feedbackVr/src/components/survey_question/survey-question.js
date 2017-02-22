@@ -9,7 +9,7 @@ import {
 
 function SurveyQuestion(props) {
 	const {
-		onClickQuestion,
+		onQuestionClick,
 		question,
 		position,
 	} = props;
@@ -65,14 +65,19 @@ function SurveyQuestion(props) {
 	  		break;
   	}
 
-	const answersEl = question.choices.map(question => {
+	const answersEl = question.choices.map(choice => {
 		return (
-			<VrButton>
-				<Text key={question.value} style={{
+			<VrButton style={{
+					backgroundColor: 'white',
+					margin: 0.02,
+				}} key={choice.value}>
+				<Text style={{
 					fontSize: 0.15,
 					marginLeft: 0.1,
+					textAlign: 'center',
+					color: 'black',
 				}}>
-					* {question.text}
+					{choice.text}
 				</Text>
 			</VrButton>
 		)
