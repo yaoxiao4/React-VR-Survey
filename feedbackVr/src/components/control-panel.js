@@ -54,7 +54,11 @@ export default class ControlPanel extends React.Component {
 
     render() {
         return (
-            <View style={{flexDirection: 'row'}}>
+            <View style={{position:'absolute',
+                transform: [{
+                    translate: [0, -1, -2],
+                }],
+                flexDirection: 'row'}}>
               <VrButton
                 style={leftButtonStyling}
                 onClick={() => this.props.onArrowClick(true)}>
