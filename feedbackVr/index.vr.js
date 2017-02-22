@@ -78,6 +78,7 @@ class FeedbackVR extends React.Component {
           onClick={()=>this.on_click()}>
           <Text
             style={{
+              position: 'absolute',
               backgroundColor: 'blue',
               textAlign:'center',
               textAlignVertical:'center',
@@ -93,8 +94,7 @@ class FeedbackVR extends React.Component {
         <Image
           source={asset('confetti.gif')}
           style={{
-            width: 2,
-            height: 2,
+            height: 3,
             layoutOrigin: [0.5, 0.5],
             transform: [{
               translate: [0, 0, -5],
