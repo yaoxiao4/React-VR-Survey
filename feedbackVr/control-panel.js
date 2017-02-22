@@ -16,14 +16,14 @@ const buttonStyling = {
 const leftButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [-0.5, 0, -3],
+        translate: [-0.5, 0.8, -1],
     }]
 };
 
 const rightButtonStyling = {
     ...buttonStyling,
     transform: [{
-        translate: [0.5, 0, -3],
+        translate: [0.5, 0.8, -1],
     }]
 };
 
