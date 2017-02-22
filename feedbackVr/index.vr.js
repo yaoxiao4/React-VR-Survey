@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  AppRegistry,
-  asset,
-  StyleSheet,
-  Pano,
-  Text,
-  View,
-  Image,
-  VrButton,
+	AppRegistry,
+	asset,
+	StyleSheet,
+	Pano,
+	Text,
+	View,
+	Image,
+	VrButton,
 } from 'react-vr';
-
+import stubs from './src/stubs.js';
+import SurveyQuestion from './src/components/survey_question/survey-question';
 
 class FeedbackVR extends React.Component {
   constructor(props) {
@@ -86,6 +87,9 @@ class FeedbackVR extends React.Component {
           }}>
           Medallia VR Team
         </Text>
+        <SurveyQuestion position='center' question={ stubs[0] } />
+        <SurveyQuestion position='left' question={ stubs[1] } />
+        <SurveyQuestion position='right' question={ stubs[2] } />
       </View>
     );
   }
