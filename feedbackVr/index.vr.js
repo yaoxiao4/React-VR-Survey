@@ -28,8 +28,6 @@ class FeedbackVR extends React.Component {
     	}
     });
 
-    questions[0].selected = 1;
-
     this.state = {
     	shouldShowText: false,
         index: 0, // index of current question in position center
@@ -49,9 +47,10 @@ class FeedbackVR extends React.Component {
   }
 
   onQuestionClick(value, question) {
+  	let newQuestions;
   	for (let i = 0; i < this.state.questions.length; i++) {
   		if (this.state.questions[i].title == question.title) {
-  			let newQuestions = [...this.state.questions];
+  			newQuestions = [...this.state.questions];
   			newQuestions[i].selected = value;
   			this.setState({
   				questions: newQuestions,
@@ -61,7 +60,18 @@ class FeedbackVR extends React.Component {
 
   	// Update progress
   	const length = this.state.questions.length;
-  	
+  	let count = 0;
+  	newQuestions.forEach(question => {
+  		if (question.selected) {
+  			count++;
+  		}
+  	})
+
+  	this.setState({
+  		progress: count/length
+  	});
+
+  	console.log(count/length);
   }
 
   selectNextQuestion(goLeft) {
