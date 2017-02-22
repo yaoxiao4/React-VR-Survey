@@ -19,7 +19,6 @@ function SurveyQuestion(props) {
 	    width: 3,
 	    height: 2,
 	    padding: 0.02,
-	    backgroundColor: 'black',
 	    layoutOrigin: [0.5, 0.5],
 	    transform: [],
 	};
@@ -28,7 +27,7 @@ function SurveyQuestion(props) {
   		case 'center':
 	  		style.transform = [
 		  		{
-		  			translate: [0, 1, -2],
+		  			translate: [0, 0, -5],
 		  		},
 		  		{
 		  			rotateY: 0
@@ -41,7 +40,7 @@ function SurveyQuestion(props) {
 		case 'left':
 	  		style.transform = [
 		  		{
-		  			translate: [-5, 1, -1],
+		  			translate: [-5, 0, -2],
 		  		},
 		  		{
 		  			rotateY: 40
@@ -54,7 +53,7 @@ function SurveyQuestion(props) {
   		case 'right':
 	  		style.transform = [
 		  		{
-		  			translate: [5, 1, -1],
+		  			translate: [5, 0, -2],
 		  		},
 		  		{
 		  			rotateY: -40
@@ -68,31 +67,32 @@ function SurveyQuestion(props) {
 
 	const answersEl = question.choices.map(question => {
 		return (
-			<Text key={question.value} style={{
-				fontSize: 0.15,
-				marginLeft: 0.1,
-			}}>
-				* {question.text}
-			</Text>
+			<VrButton>
+				<Text key={question.value} style={{
+					fontSize: 0.15,
+					marginLeft: 0.1,
+				}}>
+					* {question.text}
+				</Text>
+			</VrButton>
 		)
 	});
 
 	return (
-		<View>
-			<Image
-				source={asset('black.jpg')}
-			 	style={style}>
-			  	<Text style={{
-			  		color: 'white',
-			  		textAlign: 'center',
-			  		fontSize: 0.2,
-			  		marginBottom: 0.1,
-			  	}}>
-			  		{question.title}
-			  	</Text>
-			  	{answersEl}
-
-			</Image>
+		<View style={{...style}}>
+			<Text style={{
+				color: '#e5b13a',
+				textAlign: 'center',
+				fontSize: 0.3,
+				padding: 0.02,
+				marginBottom: 0.1,
+				textShadowColor: '#e5b13a',
+				textShadowOffset: {width: 5, height: 5},
+				textShadowRadius: 5,
+			}}>
+				{question.title}
+			</Text>
+			{answersEl}
 		</View>
 	);
 }
