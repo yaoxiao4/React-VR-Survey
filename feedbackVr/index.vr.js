@@ -10,15 +10,63 @@ import {
   VrButton,
 } from 'react-vr';
 
+
 class FeedbackVR extends React.Component {
-  _onViewClicked() {
-    alert('aya');
+  constructor(props) {
+    super(props);
+    this.state = {shouldShowText: false};
+  }
+
+  on_click() {
+    this.setState({shouldShowText: true});
+
+    setTimeout(()=> {
+      this.setState({shouldShowText: false});
+    }, 3000)
   }
 
   render() {
+    const {shouldShowText} = this.state;
+
     return (
       <View>
-        <Pano style={{backgroundColor: 'white'}}/>
+        <Pano source={asset('earth.jpg')}/>
+        <VrButton
+          style={{width: 1}}
+          onClick={()=>this.on_click()}>
+          <Text
+            style={{
+              backgroundColor: 'blue',
+              textAlign:'center',
+              textAlignVertical:'center',
+              fontSize: 0.2,
+              layoutOrigin: [0.5, 0.5],
+              transform: [{translate: [0, 3, -3]}],
+            }}>
+            push me
+          </Text>
+        </VrButton>
+
+        {shouldShowText &&
+        <Image
+          source={asset('confetti.gif')}
+          style={{
+            width: 2,
+            height: 2,
+            layoutOrigin: [0.5, 0.5],
+            transform: [{
+              translate: [0, 0, -5],
+            },
+              {
+                rotateY: 0
+              },
+              {
+                rotateX: 0
+              }],
+          }}>
+        </Image>
+        }
+
         <Text
           style={{
             padding: 0.02,
@@ -29,37 +77,15 @@ class FeedbackVR extends React.Component {
             transform: [{
               translate: [0, 4, 0]
             },
-            {
-              rotateY: 0
-            },
-            {
-              rotateX: 90
-            }],
-          }}>
-          Medallia VR Team
-        </Text>
-
-        <VrButton
-          style={{width: 0.7}}
-          onClick={()=>this._onViewClicked()}>
-          <Image
-            source={asset('cat.jpg')}
-            style={{
-              width: 2,
-              height: 2,
-              layoutOrigin: [0.5, 0.5],
-              transform: [{
-                translate: [0, 0, -5],
-              },
               {
                 rotateY: 0
               },
               {
-                rotateX: 0
+                rotateX: 90
               }],
-            }}
-          />
-        </VrButton>
+          }}>
+          Medallia VR Team
+        </Text>
       </View>
     );
   }
