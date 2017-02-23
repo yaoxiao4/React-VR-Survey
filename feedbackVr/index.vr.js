@@ -156,6 +156,7 @@ class FeedbackVR extends React.Component {
             position='center'
             question={ this.state.questions[index] }
             onQuestionClick={ this.onQuestionClick }/>
+
         {(index > 0) &&
             <SurveyQuestion
                 position='left'
@@ -169,6 +170,8 @@ class FeedbackVR extends React.Component {
                 onQuestionClick={ this.onQuestionClick }/>}
 
         <ControlPanel onArrowClick={this.selectNextQuestion}/>
+
+        <ProgressBar progress={this.state.progress}/>
       </View>
     );
   }
