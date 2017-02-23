@@ -43,7 +43,7 @@ function SurveyQuestion(props) {
 		  			translate: [-5, 0, -2],
 		  		},
 		  		{
-		  			rotateY: 50
+		  			rotateY: 60
 		  		},
 		  		{
 		  			rotateX: 0
@@ -56,7 +56,33 @@ function SurveyQuestion(props) {
 		  			translate: [5, 0, -2],
 		  		},
 		  		{
-		  			rotateY: -50
+		  			rotateY: -60
+		  		},
+		  		{
+		  			rotateX: 0
+		  		}
+	  		];
+	  		break;
+	  	case 'backLeft':
+	  		style.transform = [
+		  		{
+		  			translate: [-5, 0, 4],
+		  		},
+		  		{
+		  			rotateY: 130
+		  		},
+		  		{
+		  			rotateX: 0
+		  		}
+	  		];
+	  		break;
+	  	case 'backRight':
+	  		style.transform = [
+		  		{
+		  			translate: [5, 0, 4],
+		  		},
+		  		{
+		  			rotateY: -120
 		  		},
 		  		{
 		  			rotateX: 0

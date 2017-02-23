@@ -9,7 +9,6 @@ function init(bundle, parent, options) {
   const vr = new VRInstance(bundle, 'feedbackVr', parent, {
     // Add custom options here
     cursorEnabled: true,
-    ...options,
     cursorAutoHide: false,
   });
   vr.render = function() {

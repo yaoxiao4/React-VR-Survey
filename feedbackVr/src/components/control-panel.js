@@ -14,8 +14,8 @@ const textStyling = {
 
 const buttonStyling = {
     position: 'absolute',
-    width: 0.5,
-    height: 0.25,
+    width: 0.1,
+    height: 0.1,
 };
 
 const leftButtonStyling = {
@@ -32,11 +32,35 @@ const rightButtonStyling = {
     }]
 };
 
+const resetButtonStyling = {
+    ...buttonStyling,
+    transform: [{
+        translate: [0.3, -0.066, 0.02],
+    },
+    {
+        rotateX: 45,
+    },
+    {
+
+        rotateY: -45,
+    },
+    {
+        rotateX: -25,
+    },]
+};
+
 const arrowStyling = {
     width: 0.1,
     height: 0.1,
     overlayColor: 'red',
 };
+
+const resetStyling = {
+    width: 0.1,
+    height: 0.1,
+    overlayColor: 'red',
+};
+
 
 const leftArrowStyling = {
     ...arrowStyling,
@@ -52,6 +76,17 @@ export default class ControlPanel extends React.Component {
     }
 
     render() {
+        if (this.props.reachEndLeft) {
+            leftArrowStyling.opacity = 0.5
+        } else {
+            leftArrowStyling.opacity = 1
+        }
+        if (this.props.reachEndRight) {
+            arrowStyling.opacity = 0.5
+        } else {
+
+            arrowStyling.opacity = 1
+        }
         return (
             <View style={{
                 height: 0.2,
@@ -93,6 +128,21 @@ export default class ControlPanel extends React.Component {
                     }]
                 }}> 
                 Next
+                </Text>
+              </VrButton>
+              <VrButton
+                style={resetButtonStyling}
+                onClick={() => this.props.onReset()}>
+              <Image
+                  source={asset('prev2.jpg')}
+                  style={resetStyling}>
+                </Image>
+                <Text style={{...textStyling,
+                    transform: [{
+                        translate: [0.022, 0.009, 0],
+                    }]
+                }}> 
+                Reset
                 </Text>
               </VrButton>
               <ProgressBar progress={this.props.progress}/>

@@ -1,106 +1,126 @@
 export default stubs = [
 	{
-		title: 'Kanye or JayZ',
+		title: 'Which is NOT a Medallia Value?',
 		choices: [
 			{
-				text: 'Kanye of course, YEEZUS!',
-				value: 1
+				text: 'Be humble not arrogant',
+				value: 1,
+				correct: false,
 			},
 			{
-				text: 'JayZ is the real OG',
-				value: 2
+				text: 'Respect the struggle',
+				value: 2,
+				correct: true,
 			},
 			{
-				text: 'Yao.',
-				value: 3
+				text: 'Communicate openly and directly',
+				value: 3,
+				correct: false,
 			},
 			{
-				text: 'Xiao.',
-				value: 4
+				text: 'Do what you say',
+				value: 4,
+				correct: false,
 			},
 		],
 	},
 	{
-		title: 'How do you feel about React',
+		title: 'Who was our first client?',
 		choices: [
 			{
-				text: 'Detractor',
-				value: 1
+				text: 'Hilton',
+				value: 1,
+				correct: true,
 			},
 			{
-				text: 'Passive',
-				value: 2
+				text: 'Marriot',
+				value: 2,
+				correct: false,
 			},
 			{
-				text: 'Promoter',
-				value: 3
+				text: 'Carlson',
+				value: 3,
+				correct: false,
 			},
 			{
-				text: 'Refuse to answer',
-				value: 4
+				text: 'Four seasons',
+				value: 4,
+				correct: false,
 			},
 		],
 	},
 	{
-		title: 'Medallia or Qualtrics',
+		title: 'What car does Mike O drive?',
 		choices: [
 			{
-				text: 'Medallia',
-				value: 1
+				text: 'Tesla',
+				value: 1,
+				correct: false,
 			},
 			{
-				text: 'Medallia',
-				value: 2
+				text: 'Corvette',
+				value: 2,
+				correct: false,
 			},
 			{
-				text: 'Not Qualtrics',
-				value: 3
+				text: 'Mini Cooper S',
+				value: 3,
+				correct: false,
 			},
 			{
-				text: 'Medallia',
-				value: 4
+				text: 'STI',
+				value: 4,
+				correct: true,
 			},
 		],
 	},
 	{
-		title: 'Mimi or Dan?',
+		title: 'first floor open space AKA ...',
 		choices: [
 			{
-				text: 'Mimi',
-				value: 1
+				text: 'Dance floor',
+				value: 1,
+				correct: true,
 			},
 			{
-				text: 'Dan',
-				value: 2
+				text: 'The play pen',
+				value: 2,
+				correct: false,
 			},
 			{
-				text: 'They both suck',
-				value: 3
+				text: 'Family room',
+				value: 3,
+				correct: false,
 			},
 			{
-				text: 'They both really suck',
-				value: 4
+				text: 'The chill zone',
+				value: 4,
+				correct: false,
 			},
 		],
 	},
 	{
-		title: 'What is your opinion on this hackathon',
+		title: 'the library used to be a ...',
 		choices: [
 			{
-				text: 'I want the white shirt',
-				value: 1
+				text: 'Nap room',
+				value: 1,
+				correct: false,
 			},
 			{
-				text: 'I LOVE IT',
-				value: 2
+				text: 'Dog playground',
+				value: 2,
+				correct: false,
 			},
 			{
-				text: 'even better than hack of thrones',
-				value: 3
+				text: 'Bar',
+				value: 3,
+				correct: false,
 			},
 			{
-				text: 'but not really doe',
-				value: 4
+				text: 'Playroom',
+				value: 4,
+				correct: true,
 			},
 		],
 	}

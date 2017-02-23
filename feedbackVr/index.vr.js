@@ -6,7 +6,9 @@ import {
 	Pano,
 	Text,
 	View,
+	Mesh,
 	Image,
+	Sound,
 	VrButton,
 } from 'react-vr';
 
@@ -32,14 +34,28 @@ class FeedbackVR extends React.Component {
         index: 0, // index of current question in position center
     	questions,
     	progress: 0,
+    	reachEndLeft: false,
+    	reachEndRight: false,
+    	score: 0,
+    	submitted: false,
     };
 
+    this.reset = this.reset.bind(this);
     this.onQuestionClick = this.onQuestionClick.bind(this);
     this.selectNextQuestion = this.selectNextQuestion.bind(this);
   }
 
   on_click() {
-    this.setState({shouldShowText: true});
+    let correctCount = 0;
+    this.state.questions.forEach(question => {
+    	if (question['choices'][question.selected - 1].correct) {
+    		console.log(question['choices'][question.selected])
+    		correctCount ++;
+    	}
+    });
+
+   	const correctPercentage = correctCount/this.state.questions.length;
+    this.setState({shouldShowText: true, score: correctPercentage, submitted: true});
 
     setTimeout(()=> {
       this.setState({shouldShowText: false});
@@ -72,9 +88,48 @@ class FeedbackVR extends React.Component {
   	});
   }
 
+  reset() {
+  	const questions = stubs.map(question => {
+  		return {
+  			title: question.title,
+  			choices: question.choices,
+  			selected: 0,
+  		}
+  	});
+  	this.setState({
+  		questions,
+  		progress: 0,
+  		score: 0,
+  		submitted: false,
+  	});
+  }
+
   selectNextQuestion(goLeft) {
-      if ((goLeft && this.state.index) === 0 || (!goLeft && this.state.index === stubs.length - 1)) {
+      if ((goLeft && this.state.index) === 0) {
           return;
+      }
+
+      if (!goLeft && this.state.index === stubs.length - 1) {
+      	return;
+      }
+      if ((goLeft && this.state.index) === 1) {
+      	  this.setState({
+      	  	reachEndLeft: true
+      	  });
+      } else {
+      	this.setState({
+      		reachEndLeft: false
+      	});
+      }
+
+      if (!goLeft && this.state.index === stubs.length - 2) {
+      	this.setState({
+      		reachEndRight: true
+      	});
+      } else {
+      	this.setState({
+      		reachEndRight: false
+      	});
       }
       const newIndex = goLeft ? this.state.index - 1 : this.state.index + 1;
       this.setState({index: newIndex});
@@ -86,14 +141,15 @@ class FeedbackVR extends React.Component {
 
     return (
       <View>
-        <Pano source={asset('earth.jpg')}/>
+      	        <Pano source={asset('earth.jpg')}/>
+
 
         {this.state.progress === 1 &&
             <VrButton
               style={{width: 1,
                   position:'absolute',
                   layoutOrigin: [0.5, 0.5],
-                  transform: [{translate: [0, 1.2, -3]}]
+                  transform: [{translate: [0.15, 1.2, -3]}]
               }}
               onClick={()=>this.on_click()}>
               <Image
@@ -104,31 +160,36 @@ class FeedbackVR extends React.Component {
                       width: 0.9,
                   }}>
               </Image>
-              <Image
-                  source={asset('prev2.jpg')}
-                  style={{
-                      position: 'absolute',
-                      height: 0.8,
-                      width: 0.8,
-                      transform: [{translate: [0, 0.7, -3]}]
-                  }}>
-              </Image>
             </VrButton>
         }
 
+        {!shouldShowText && this.state.submitted &&
+        	<Text
+        		style={{
+        		    position: 'absolute',
+        		    height: 1,
+        		    fontSize: 0.2,
+        		    width: 2,
+        		    layoutOrigin: [0, 0],
+        		    transform: [{translate: [-0.35, 0.95, -3]}]
+        		}}>
+        		Score: {this.state.score * 100 + '%'}
+        	</Text>
+        }
+
+
         {shouldShowText &&
             <Image
-              source={asset('confetti.gif')}
+              source={asset('miko2.png')}
               style={{
                 position: 'absolute',
-                height: 3,
-                width: 4,
+                height: 0.2,
+                width: 0.4,
                 layoutOrigin: [0.5, 0.5],
-                transform: [{translate: [0, 0, -1]}],
+                transform: [{translate: [0, 0, -0.2]}],
               }}>
             </Image>
         }
-
         <Image
           source={asset('borge.jpg')}
           style={{
@@ -144,6 +205,7 @@ class FeedbackVR extends React.Component {
           style={{
             position: 'absolute',
             padding: 0.02,
+            width: 4,
             textAlign:'center',
             textAlignVertical:'center',
             fontSize: 0.8,
@@ -158,7 +220,9 @@ class FeedbackVR extends React.Component {
               rotateX: 90
             }],
           }}>
-          Medallia VR Team
+          Mimi Lee
+          Yao Xiao
+          Daniel Wu
         </Text>
 
         <SurveyQuestion
@@ -171,15 +235,24 @@ class FeedbackVR extends React.Component {
                 position='left'
                 question={ this.state.questions[index - 1] }
                 onQuestionClick={ this.onQuestionClick }/>}
+        {(index > 1) &&
+            <SurveyQuestion
+                position='backLeft'
+                question={ this.state.questions[index - 1] }
+                onQuestionClick={ this.onQuestionClick }/>}
 
         {(index < this.state.questions.length - 1) &&
             <SurveyQuestion
                 position='right'
                 question={ this.state.questions[index + 1] }
                 onQuestionClick={ this.onQuestionClick }/>}
+        {(index < this.state.questions.length - 2) &&
+            <SurveyQuestion
+                position='backRight'
+                question={ this.state.questions[index + 2] }
+                onQuestionClick={ this.onQuestionClick }/>}
         <View>
-		    <ControlPanel progress={this.state.progress} onArrowClick={this.selectNextQuestion}/>
-		    
+		    <ControlPanel reachEndLeft={this.state.reachEndLeft} reachEndRight={this.state.reachEndRight} progress={this.state.progress} onReset={this.reset} onArrowClick={this.selectNextQuestion}/>
         </View>
       </View>
     );
