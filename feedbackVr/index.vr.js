@@ -87,34 +87,37 @@ class FeedbackVR extends React.Component {
     return (
       <View>
         <Pano source={asset('earth.jpg')}/>
-        <VrButton
-          style={{width: 1,
-              position:'absolute',
-              layoutOrigin: [0.5, 0.5],
-              transform: [{translate: [0, 1.5, -3]}]
-          }}
-          onClick={()=>this.on_click()}>
-          <Image
-              source={asset('submit.jpg')}
-              style={{
-                  position: 'absolute',
-                  height: 0.25,
-                  width: 0.9,
-              }}>
-          </Image>
-        </VrButton>
+
+        {this.state.progress === 1 &&
+            <VrButton
+              style={{width: 1,
+                  position:'absolute',
+                  layoutOrigin: [0.5, 0.5],
+                  transform: [{translate: [0, 1.5, -3]}]
+              }}
+              onClick={()=>this.on_click()}>
+              <Image
+                  source={asset('submit.jpg')}
+                  style={{
+                      position: 'absolute',
+                      height: 0.25,
+                      width: 0.9,
+                  }}>
+              </Image>
+            </VrButton>
+        }
 
         {shouldShowText &&
-        <Image
-          source={asset('confetti.gif')}
-          style={{
-            position: 'absolute',
-            height: 3,
-            width: 4,
-            layoutOrigin: [0.5, 0.5],
-            transform: [{translate: [0, 0, -2]}],
-          }}>
-        </Image>
+            <Image
+              source={asset('confetti.gif')}
+              style={{
+                position: 'absolute',
+                height: 3,
+                width: 4,
+                layoutOrigin: [0.5, 0.5],
+                transform: [{translate: [0, 0, -2]}],
+              }}>
+            </Image>
         }
 
         <Image
