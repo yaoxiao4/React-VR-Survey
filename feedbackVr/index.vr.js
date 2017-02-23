@@ -93,7 +93,7 @@ class FeedbackVR extends React.Component {
               style={{width: 1,
                   position:'absolute',
                   layoutOrigin: [0.5, 0.5],
-                  transform: [{translate: [0, 1.5, -3]}]
+                  transform: [{translate: [0, 1.2, -3]}]
               }}
               onClick={()=>this.on_click()}>
               <Image
@@ -102,6 +102,15 @@ class FeedbackVR extends React.Component {
                       position: 'absolute',
                       height: 0.25,
                       width: 0.9,
+                  }}>
+              </Image>
+              <Image
+                  source={asset('prev2.jpg')}
+                  style={{
+                      position: 'absolute',
+                      height: 0.8,
+                      width: 0.8,
+                      transform: [{translate: [0, 0.7, -3]}]
                   }}>
               </Image>
             </VrButton>
@@ -115,7 +124,7 @@ class FeedbackVR extends React.Component {
                 height: 3,
                 width: 4,
                 layoutOrigin: [0.5, 0.5],
-                transform: [{translate: [0, 0, -2]}],
+                transform: [{translate: [0, 0, -1]}],
               }}>
             </Image>
         }
@@ -168,10 +177,10 @@ class FeedbackVR extends React.Component {
                 position='right'
                 question={ this.state.questions[index + 1] }
                 onQuestionClick={ this.onQuestionClick }/>}
-
-        <ControlPanel onArrowClick={this.selectNextQuestion}/>
-
-        <ProgressBar progress={this.state.progress}/>
+        <View>
+		    <ControlPanel progress={this.state.progress} onArrowClick={this.selectNextQuestion}/>
+		    
+        </View>
       </View>
     );
   }
